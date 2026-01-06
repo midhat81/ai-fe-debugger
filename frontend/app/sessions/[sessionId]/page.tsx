@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useSessionStore } from '@/store/useSessionStore';
 import EventTimeline from '@/components/dashboard/EventTimeline';
+import AIAnalysis from '@/components/dashboard/AIAnalysis';
+import SessionInsights from '@/components/dashboard/SessionInsights'; // ADD THIS
 import { format } from 'date-fns';
 
 export default function SessionDetailPage() {
@@ -109,7 +111,22 @@ export default function SessionDetailPage() {
               </div>
             </div>
 
-            {/* Event Timeline */}
+            {/* Two Column Layout for AI Features */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Left Column: Session Insights */}
+              <SessionInsights 
+                sessionId={sessionId}
+                eventCount={currentSession.events?.length || 0}
+                errorCount={currentSession.errorCount}
+              />
+
+              {/* Right Column: Error Analysis (if errors exist) */}
+              {currentSession.errorCount > 0 && (
+                <AIAnalysis sessionId={sessionId} />
+              )}
+            </div>
+
+            {/* Event Timeline - Full Width */}
             <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold">Event Timeline</h2>
