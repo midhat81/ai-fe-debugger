@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import SDKProvider from "@/components/SDKProvider";
 
 export const metadata: Metadata = {
   title: "AI Frontend Debugger",
@@ -14,7 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased" suppressHydrationWarning>
-        {children}
+        <SDKProvider>
+          {children}
+        </SDKProvider>
       </body>
     </html>
   );

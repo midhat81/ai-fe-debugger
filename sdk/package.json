@@ -1,6 +1,7 @@
 {
   "name": "ai-fe-debugger-sdk",
   "version": "1.0.0",
+  "type": "module",
   "main": "dist/ai-fe-debugger.js",
   "types": "dist/index.d.ts",
   "scripts": {
